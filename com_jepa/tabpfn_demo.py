@@ -4,6 +4,7 @@ Requires a separately downloaded, hash-verified checkpoint. Does not serve a mod
 """
 
 import argparse
+from datetime import datetime, timezone
 from hashlib import file_digest
 from importlib.metadata import version
 import json
@@ -92,7 +93,7 @@ def comparison(checkpoint, expected_sha256, samples=300, seed=42, gpu_memory_gib
     y_test = np.asarray([SETTLED[r["label_status"]] for r in test])
     estimator = TabPFNClassifier(
         model_path=checkpoint, device="cuda", random_state=seed,
-        n_estimators=4, auto_scale_n_estimators=False, n_preprocessing_jobs=1,
+        n_estimators=4, n_preprocessing_jobs=1,
         fit_mode="fit_preprocessors", softmax_temperature=0.9,
     )
     torch.cuda.synchronize()
@@ -118,7 +119,8 @@ def comparison(checkpoint, expected_sha256, samples=300, seed=42, gpu_memory_gib
         "name": "TabPFN-3", "repository": MODEL_REPO, "revision": MODEL_REVISION,
         "filename": checkpoint.name, "sha256": checkpoint_hash, "licence": MODEL_LICENCE,
         "n_estimators": 4, "random_state": seed, "device": "cuda", "n_preprocessing_jobs": 1,
-        "auto_scale_n_estimators": False, "fit_mode": "fit_preprocessors", "softmax_temperature": 0.9,
+        "resolved_n_estimators": int(estimator.n_estimators_),
+        "fit_mode": "fit_preprocessors", "softmax_temperature": 0.9,
         "prediction_protocol": "one_test_row_per_call_with_fixed_training_context",
         "gpu_allocator_budget_gib": gpu_memory_gib,
         "peak_torch_allocated_bytes": torch.cuda.max_memory_allocated(0),
@@ -130,6 +132,7 @@ def comparison(checkpoint, expected_sha256, samples=300, seed=42, gpu_memory_gib
         "tabpfn_predict_all_test_rows_individually": predict_seconds,
     }
     report["implementation_sha256"] = {}
+    report["evaluated_at_utc"] = datetime.now(timezone.utc).isoformat()
     for name in ("forest_demo.py", "tabpfn_demo.py"):
         with Path(__file__).with_name(name).open("rb") as stream:
             report["implementation_sha256"][name] = file_digest(stream, "sha256").hexdigest()
