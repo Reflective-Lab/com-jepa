@@ -2,6 +2,8 @@
 
 Every entity, event, source, and probability in `fictional-trajectory.jsonl` is invented. This is an executable specification example, not a training dataset or benchmark. No model generated the example's probability.
 
+For cases that challenge the contract and its scope, see the [fictional challenge set](challenge-set/README.md). Those discussion cards include unresolved semantics and are not JSONL fixtures. Start partner conversations with the [discovery guide](../docs/partner-discovery.md).
+
 The fictional team promises an integration by Friday 9 January. It later agrees a Monday 12 January deadline with the customer. Friday's original promise is assessed as not met; Monday's revised promise is assessed as met. Both assessments remain attached to their own versions.
 
 | Event | Meaning |
