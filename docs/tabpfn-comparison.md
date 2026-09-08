@@ -74,3 +74,29 @@ GPU timings and floating-point outputs need not be bitwise reproducible across h
 ## Testing boundaries
 
 Unit tests verify checkpoint rejection, positive-class mapping, probability validity, and one-row-per-call isolation without downloading a model. The existing temporal and missing-label tests still apply. A real checkpoint execution is a separate, explicitly invoked GPU experiment, not a stubbed test result.
+
+## First measured run — 8 September 2026
+
+**Synthetic pipeline evidence only.** The GPU experiment completed on an NVIDIA GB10 using Python 3.12.3, PyTorch 2.11.0+cu130, and TabPFN 8.5.0. It used generator `toy-tabular-v1`, seed 42, with 300 generated rows, 153 eligible training rows, and 85 eligible test rows. All three estimators received the same eligible task data and were scored against the same outcomes.
+
+| Model | Brier score ↓ | Log loss ↓ | Accuracy at 0.5 ↑ |
+| --- | ---: | ---: | ---: |
+| Historical base rate | 0.2198 | 0.6317 | 68.24% |
+| Random Forest | 0.1677 | 0.5200 | 78.82% |
+| TabPFN-3 | 0.1500 | 0.4760 | 77.65% |
+
+TabPFN produced better probability scores on this sample. The forest classified 67 of 85 cases correctly at the fixed threshold; TabPFN classified 66. This illustrates why probability scoring matters for decision support: better probability estimates need not produce more correct binary calls at an arbitrary threshold. These scores do not establish calibration or statistical significance.
+
+The resolved TabPFN ensemble contained four estimators. Loading the checkpoint and preparing the training context took 1.24 seconds; predicting all 85 test rows individually took 6.21 seconds. Peak PyTorch tensor allocation was 228,177,920 bytes (about 218 MiB), which excludes other process and device memory. These measurements come from a shared GPU and are not a controlled speed benchmark.
+
+Reproduction identifiers:
+
+- Source commit: [`8053ae348856bdc2e1facaa29501ae881f84ae44`](https://github.com/Reflective-Lab/com-jepa/commit/8053ae348856bdc2e1facaa29501ae881f84ae44).
+- Dataset SHA-256: `79064303e37a8da38390cd0635168bad630be1fbc2793d2f427e5b6088670981`.
+- Evaluation completed: `2026-09-08T17:09:02.580470+00:00`.
+- Checkpoint revision and hash: the pinned values above.
+- Local run receipts: `artifacts/tabpfn-comparison-seed42-final.json`, `artifacts/tabpfn-environment.txt`, and `artifacts/tabpfn-source-revision.txt` (ignored by Git).
+
+All 25 unit tests passed on the GPU machine, and the real checkpoint completed the comparison separately. The existing inference service returned a successful health response after the experiment.
+
+This establishes that the comparison can run on modest task data without fine-tuning neural weights. It does not establish organisational prediction quality, transfer across organisations, or a benefit from JEPA. The next research step is to challenge the data and evaluation assumptions with partners before treating this ranking as a model-selection result.
