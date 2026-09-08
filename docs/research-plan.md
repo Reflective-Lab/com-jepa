@@ -1,6 +1,6 @@
 # Research plan
 
-Status: proposal, 2026-09-08. No empirical organisational results yet.
+Status: research proposal, 2026-09-08. Release 0.1.0 implements the draft event validator, a synthetic Random Forest baseline, and a [TabPFN-3 comparison with recorded GPU results](tabpfn-comparison.md). These exercise the pipeline on invented data; they do not satisfy the measurement or real-data evaluation gates below. No empirical organisational results yet.
 
 ## Primary question and target
 

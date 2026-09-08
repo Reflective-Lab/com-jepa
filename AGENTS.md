@@ -8,4 +8,6 @@ Keep commitment identity/version, authority, action stage, occurrence time, avai
 
 Do not import private source, internal endpoints, partner data, credentials, or personal work records. Use publicly available references and wholly fictional examples. Never publish real data or trained artefacts without explicit authorisation and a documented release review.
 
-Run `.venv/bin/python -m unittest discover -s tests -v` and `.venv/bin/python -m com_jepa validate examples/fictional-trajectory.jsonl` for code/schema changes. Use branches and pull requests after the initial repository bootstrap. Do not push or merge without task authorisation.
+Run `.venv/bin/python -m unittest discover -s tests -v` and `.venv/bin/python -m com_jepa validate examples/fictional-trajectory.jsonl` for code/schema changes. Maintainer work uses the existing checkout on `main`: pull before asserting state, validate, commit, and push authorised changes to the canonical GitHub repository. Do not create additional branches or worktrees. External pull requests may be reviewed and merged into `main`; remove merged topic branches once their commits are preserved. Do not push, merge, or publish a release without task authorisation.
+
+For releases, update README status and run instructions, CHANGELOG.md, and CITATION.cff. Keep schema versions separate from release bookkeeping. Tag the validated main commit with an annotated `vX.Y.Z` tag, publish matching release notes, and synchronise experiment checkouts to that commit. Never move a published release tag.

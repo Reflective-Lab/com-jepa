@@ -1,6 +1,8 @@
 cff-version: 1.2.0
 message: "Please cite this research repository and the exact commit used. Cite the original publications separately for their findings."
 type: software
+version: "0.1.0"
+date-released: "2026-09-08"
 title: "com-jepa: Organisational Commitment JEPA"
 abstract: "An open research project investigating whether commitment trajectories can improve organisational prediction and learning, beginning with explicit data contracts and conventional machine-learning baselines."
 authors:

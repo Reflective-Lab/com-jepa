@@ -8,7 +8,7 @@ Today, people often carry the missing connections between business systems. They
 
 **com-jepa asks whether a history of commitments, decisions, actions, and observed consequences can improve the next organisational decision.** It starts with an explicit data contract and simple statistical models. It will investigate Joint Embedding Predictive Architectures (JEPA) if the evidence and data justify that step.
 
-This is an open research project initiated by [Reflective Lab](https://www.reflective.se). It is at the research-design and data-contract stage, with an executable Random Forest demonstration trained on invented rows. There is no trained organisational JEPA model, production predictor, or empirical organisational performance claim in this repository. The included data is entirely fictional.
+This is an open research project initiated by [Reflective Lab](https://www.reflective.se). **[Release 0.1.0](https://github.com/Reflective-Lab/com-jepa/releases/tag/v0.1.0)** provides a draft event contract, partner discovery materials, an executable Random Forest demonstration, and a tested TabPFN-3 GPU comparison on invented rows. There is no trained organisational JEPA model, production predictor, or empirical organisational performance claim in this repository. The included data is entirely fictional.
 
 [Reflective research library](https://www.reflective.se/labs/research) · [Research plan](docs/research-plan.md) · [Data contract](docs/data-contract.md) · [Contribute](CONTRIBUTING.md) · [Security](SECURITY.md)
 
@@ -73,12 +73,13 @@ A simple model that wins is a successful research result. A shared model valid f
 | [Fictional challenge set](examples/challenge-set/README.md) | Eight difficult or contrasting cases that question the contract and its scope |
 | [Partner discovery guide](docs/partner-discovery.md) | A first conversation that lets partners introduce their own distinctions |
 | [Application integration](docs/application-integration.md) | How apps contribute to the Organisation Core |
+| [Changelog](CHANGELOG.md) | What is included in each release |
 | [First 90 days](docs/first-90-days.md) | A bounded starting project and collaboration questions |
 | [Reading list](docs/reading-list.md) | Intellectual lineage and the limits of the evidence |
 
 ## Run the first artefact
 
-Python 3.11 or later:
+Run from a checkout of this repository. The event validator requires Python 3.11 or later; the optional ML dependencies require Python 3.12 or later. CPU ML is exercised on Python 3.14 in CI, and the GPU comparison was run on Python 3.12 / Linux ARM64.
 
 ```sh
 python3 -m venv .venv
@@ -94,7 +95,7 @@ For discussion before collecting data, use the [eight fictional challenge cards]
 
 The validation command reports **11 valid fictional events**. The Tuesday-noon snapshot contains **e01, e02, and e03**: the accepted promise, a reported delay, and a proposed response. An observation made earlier but received Wednesday is correctly excluded. The test suite checks these boundaries and the preservation of both commitment versions.
 
-## Project status
+## Run the ML examples
 
 To try the optional ML example, use Python 3.14 and the pinned scikit-learn dependencies:
 
@@ -106,12 +107,36 @@ python3.14 -m venv .venv
 
 This fits a Random Forest to 300 invented commitment snapshots and compares it with the training fulfilment rate on a later test period. Unknown/disputed/censored labels are excluded, and training labels must be available before fitting. See the [demo guide](docs/random-forest-demo.md) for the exact synthetic rule, JSON reports, and limitations. PyTorch and a GPU are not required.
 
+For the neural comparator, follow the [TabPFN-3 setup guide](docs/tabpfn-comparison.md). It adds PyTorch, CUDA, and a separately licensed pretrained checkpoint to an isolated environment. Once prepared:
+
+```sh
+.venv/bin/python -m com_jepa.tabpfn_demo \
+  --checkpoint artifacts/tabpfn-3/tabpfn-v3-classifier-v3_default.ckpt \
+  --output artifacts/tabpfn-comparison.json
+```
+
+Choose a new output filename for each run. TabPFN uses the training examples as context; this example does not fine-tune its neural weights.
+
+## First synthetic comparison
+
+On 8 September 2026, all three models were evaluated on the same 153 eligible training rows and 85 later test rows, using generator `toy-tabular-v1` and seed 42:
+
+| Model | Brier score ↓ | Log loss ↓ | Accuracy at 0.5 ↑ |
+| --- | ---: | ---: | ---: |
+| Historical base rate | 0.2198 | 0.6317 | 68.24% |
+| Random Forest | 0.1677 | 0.5200 | 78.82% |
+| TabPFN-3 | 0.1500 | 0.4760 | 77.65% |
+
+TabPFN had better probability scores on this sample; the forest classified one more case correctly at the fixed threshold. **These are synthetic pipeline results, not evidence of organisational prediction quality or broad model superiority.** See [the measured run](docs/tabpfn-comparison.md#first-measured-run--8-september-2026) for provenance, timings, and limitations. The release has 25 unit tests; real GPU execution is recorded separately from CI.
+
+## Project status
+
 | Available now | Proposed next |
 | --- | --- |
 | Organisational thesis and falsifiable research questions | Practitioner review and selection of one commitment family |
-| Draft JSON Schema, fictional trajectory, and historical context utility | A governed prospective pilot and real outcome adjudication |
+| Draft JSON Schema, fictional trajectory, historical context utility, and eight discovery cases | A governed prospective pilot and real outcome adjudication |
 | Temporal and lineage tests; GitHub CI | A reproducible benchmark with conventional ML baselines |
-| Synthetic Random Forest example and base-rate comparator | Real-data feature extraction, outcome adjudication, and validation |
+| Synthetic Random Forest, base-rate comparator, and pinned TabPFN-3 GPU comparison | Real-data feature extraction, outcome adjudication, and validation |
 | Evaluation and application-integration proposals | Sequence/graph experiments and, if justified, JEPA |
 
 No partner participation, dataset access, generalisation result, or model efficiency is implied by this roadmap. See the [claims ledger](docs/reading-list.md#claim-boundaries).
@@ -126,6 +151,6 @@ Kenneth Pernyér initiates and maintains the project; research, engineering, ope
 
 ## Cite and reuse
 
-Use [CITATION.cff](CITATION.cff) and cite the exact commit used in an experiment. This repository is a research project, not a peer-reviewed finding. Cite the original papers separately when relying on their results.
+Use [CITATION.cff](CITATION.cff) and cite the release tag and exact commit used in an experiment. This repository is a research project, not a peer-reviewed finding. Cite the original papers separately when relying on their results.
 
-Original repository content is [MIT licensed](LICENCE). Linked publications and any future third-party datasets retain their own licences. The licence does not grant rights to private organisational data or imply endorsement by Reflective Lab.
+Original repository content is [MIT licensed](LICENCE). Linked publications, third-party model weights and outputs, and any future third-party datasets retain their own licences. In particular, the TabPFN-3 checkpoint has separate non-commercial terms documented in the [comparison guide](docs/tabpfn-comparison.md#environment-and-model-access). The licence does not grant rights to private organisational data or imply endorsement by Reflective Lab.

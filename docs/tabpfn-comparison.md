@@ -12,7 +12,7 @@ This optional adapter compares a pretrained TabPFN-3 classifier with the Random 
 | Model revision | `24a16a89d245878b846555110985634aa2e656d7` |
 | Checkpoint | `tabpfn-v3-classifier-v3_default.ckpt` |
 | Checkpoint SHA-256 | `d0d865d54dfbc524f5703104be90620182dca7e5fb2c16de72e9959ea18f3988` |
-| Candidate ensemble | Four estimators; automatic ensemble scaling disabled |
+| Candidate ensemble | Four explicitly requested estimators; resolved count verified |
 | Test protocol | One test row per prediction call, fixed historical training context |
 
 The adapter verifies the checkpoint hash before loading it. It requires CUDA and does not silently fall back to another model or device. A future checkpoint comparison must update provenance explicitly.

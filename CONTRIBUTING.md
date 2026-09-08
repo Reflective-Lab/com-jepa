@@ -4,7 +4,7 @@ Start with a question we can test, a fictional example that breaks the contract,
 
 The first priorities are in [First 90 days](docs/first-90-days.md). Organisational practitioners, process-mining researchers, applied-ML and JEPA researchers, application developers, and human–AI interaction researchers can contribute independently.
 
-For code or schema changes, run the README commands. Include tests when changing temporal boundaries, lineage, target semantics, or validation behaviour. Update the schema version and examples when the contract changes. The draft may change incompatibly before a stable release.
+For code or schema changes, run the README commands. Include tests when changing temporal boundaries, lineage, target semantics, or validation behaviour. Update the schema version and examples when the contract changes. The draft may change incompatibly during 0.x releases. Maintainer work proceeds on the canonical `main` checkout; external contributors can submit pull requests. Releases are annotated tags on validated `main` commits, with matching README, changelog, and citation metadata.
 
 Publish only fictional or separately cleared data. Do not paste private work records, personal data, credentials, or partner identifiers into issues, examples, model artefacts, or pull requests. Propose the collection method publicly and keep any real-data arrangement separate. See [Data stewardship](docs/data-contract.md#data-stewardship).
 
