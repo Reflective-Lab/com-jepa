@@ -13,6 +13,8 @@ Sequence/graph models and JEPA follow only if these results justify them. Long c
 
 ## Initial work packages
 
+The [fictional challenge set](../examples/challenge-set/README.md) and [partner discovery guide](partner-discovery.md) provide starting material for the first two work packages. Gather participants' own accounts before showing the cards; no case constitutes a partner finding or a training label.
+
 1. **Target definition:** choose a recurring promise, specify fulfilment and observation, and identify where revisions make labels ambiguous.
 2. **Contract review:** challenge the action vocabulary, version lineage, beneficiary role, late evidence, and missing-data semantics with fictional counterexamples.
 3. **Measurement adapter:** export one prospective trajectory across two surfaces, preserving authority and provenance.

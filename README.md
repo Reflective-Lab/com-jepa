@@ -68,6 +68,8 @@ A simple model that wins is a successful research result. A shared model valid f
 | [Foundations](docs/foundations.md) | The organisation, human agency, and learning from priors |
 | [Research plan](docs/research-plan.md) | Hypotheses, comparisons, evaluation, and stop conditions |
 | [Data contract](docs/data-contract.md) | What to collect, label, connect, and keep out |
+| [Fictional challenge set](examples/challenge-set/README.md) | Eight difficult or contrasting cases that question the contract and its scope |
+| [Partner discovery guide](docs/partner-discovery.md) | A first conversation that lets partners introduce their own distinctions |
 | [Application integration](docs/application-integration.md) | How apps contribute to the Organisation Core |
 | [First 90 days](docs/first-90-days.md) | A bounded starting project and collaboration questions |
 | [Reading list](docs/reading-list.md) | Intellectual lineage and the limits of the evidence |
@@ -85,6 +87,8 @@ python3 -m venv .venv
 ```
 
 This validates the draft event contract and constructs the context available at a historical prediction cutoff. It demonstrates exclusion of late-arriving evidence, future actions, and outcome assessments from predictor inputs. It does **not** train a model or establish that a dataset is suitable for research. See [the example walkthrough](examples/README.md).
+
+For discussion before collecting data, use the [eight fictional challenge cards](examples/challenge-set/README.md). They preserve unresolved interpretations and deliberately include work that may not fit the commitment abstraction. They are authored scenarios, not labelled training data; the current schema remains unchanged.
 
 The validation command reports **11 valid fictional events**. The Tuesday-noon snapshot contains **e01, e02, and e03**: the accepted promise, a reported delay, and a proposed response. An observation made earlier but received Wednesday is correctly excluded. The test suite checks these boundaries and the preservation of both commitment versions.
 
