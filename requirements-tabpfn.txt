@@ -1,0 +1,4 @@
+# Install CUDA PyTorch from its official index first; see the comparison guide.
+-r requirements-ml.txt
+torch==2.11.0
+tabpfn==8.5.0

@@ -69,6 +69,7 @@ A simple model that wins is a successful research result. A shared model valid f
 | [Research plan](docs/research-plan.md) | Hypotheses, comparisons, evaluation, and stop conditions |
 | [Data contract](docs/data-contract.md) | What to collect, label, connect, and keep out |
 | [Random Forest demo](docs/random-forest-demo.md) | A small CPU-only classifier, historical base-rate comparison, and temporal checks on synthetic data |
+| [TabPFN-3 comparison](docs/tabpfn-comparison.md) | An optional GPU experiment using the same rows and a pinned pretrained classifier |
 | [Application integration](docs/application-integration.md) | How apps contribute to the Organisation Core |
 | [First 90 days](docs/first-90-days.md) | A bounded starting project and collaboration questions |
 | [Reading list](docs/reading-list.md) | Intellectual lineage and the limits of the evidence |
