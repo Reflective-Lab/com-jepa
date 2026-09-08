@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Please cite this research repository and the exact commit used. Cite the original publications separately for their findings."
+type: software
+title: "com-jepa: Organisational Commitment JEPA"
+abstract: "An open research project investigating whether commitment trajectories can improve organisational prediction and learning, beginning with explicit data contracts and conventional machine-learning baselines."
+authors:
+  - family-names: "Pernyér"
+    given-names: "Kenneth"
+    affiliation: "Reflective Lab"
+    website: "https://github.com/kpernyer"
+    orcid: "https://orcid.org/0009-0006-4543-1156"
+repository-code: "https://github.com/Reflective-Lab/com-jepa"
+url: "https://github.com/Reflective-Lab/com-jepa"
+license: MIT
+keywords:
+  - organisational learning
+  - commitments
+  - predictive process monitoring
+  - joint embedding predictive architecture
+  - human-AI collaboration

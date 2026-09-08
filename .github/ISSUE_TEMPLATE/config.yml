@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security or data-exposure report
+    url: https://github.com/Reflective-Lab/com-jepa/security/advisories/new
+    about: Do not disclose sensitive information in public issues.
