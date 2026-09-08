@@ -8,7 +8,7 @@ Today, people often carry the missing connections between business systems. They
 
 **com-jepa asks whether a history of commitments, decisions, actions, and observed consequences can improve the next organisational decision.** It starts with an explicit data contract and simple statistical models. It will investigate Joint Embedding Predictive Architectures (JEPA) if the evidence and data justify that step.
 
-This is an open research project initiated by [Reflective Lab](https://www.reflective.se). It is at the research-design and data-contract stage. There is no trained organisational JEPA model, production predictor, or empirical performance claim in this repository. The included data is entirely fictional.
+This is an open research project initiated by [Reflective Lab](https://www.reflective.se). It is at the research-design and data-contract stage, with an executable Random Forest demonstration trained on invented rows. There is no trained organisational JEPA model, production predictor, or empirical organisational performance claim in this repository. The included data is entirely fictional.
 
 [Reflective research library](https://www.reflective.se/labs/research) · [Research plan](docs/research-plan.md) · [Data contract](docs/data-contract.md) · [Contribute](CONTRIBUTING.md) · [Security](SECURITY.md)
 
@@ -68,6 +68,7 @@ A simple model that wins is a successful research result. A shared model valid f
 | [Foundations](docs/foundations.md) | The organisation, human agency, and learning from priors |
 | [Research plan](docs/research-plan.md) | Hypotheses, comparisons, evaluation, and stop conditions |
 | [Data contract](docs/data-contract.md) | What to collect, label, connect, and keep out |
+| [Random Forest demo](docs/random-forest-demo.md) | A small CPU-only classifier, historical base-rate comparison, and temporal checks on synthetic data |
 | [Application integration](docs/application-integration.md) | How apps contribute to the Organisation Core |
 | [First 90 days](docs/first-90-days.md) | A bounded starting project and collaboration questions |
 | [Reading list](docs/reading-list.md) | Intellectual lineage and the limits of the evidence |
@@ -90,11 +91,22 @@ The validation command reports **11 valid fictional events**. The Tuesday-noon s
 
 ## Project status
 
+To try the optional ML example, use Python 3.14 and the pinned scikit-learn dependencies:
+
+```sh
+python3.14 -m venv .venv
+.venv/bin/python -m pip install -r requirements-ml.txt
+.venv/bin/python -m com_jepa.forest_demo
+```
+
+This fits a Random Forest to 300 invented commitment snapshots and compares it with the training fulfilment rate on a later test period. Unknown/disputed/censored labels are excluded, and training labels must be available before fitting. See the [demo guide](docs/random-forest-demo.md) for the exact synthetic rule, JSON reports, and limitations. PyTorch and a GPU are not required.
+
 | Available now | Proposed next |
 | --- | --- |
 | Organisational thesis and falsifiable research questions | Practitioner review and selection of one commitment family |
 | Draft JSON Schema, fictional trajectory, and historical context utility | A governed prospective pilot and real outcome adjudication |
 | Temporal and lineage tests; GitHub CI | A reproducible benchmark with conventional ML baselines |
+| Synthetic Random Forest example and base-rate comparator | Real-data feature extraction, outcome adjudication, and validation |
 | Evaluation and application-integration proposals | Sequence/graph experiments and, if justified, JEPA |
 
 No partner participation, dataset access, generalisation result, or model efficiency is implied by this roadmap. See the [claims ledger](docs/reading-list.md#claim-boundaries).

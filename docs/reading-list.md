@@ -31,4 +31,4 @@ Further lineage to examine includes language/action approaches to cooperative wo
 | Shared representations and local adaptation are research questions | One trained model is valid for most organisations |
 | Durable context can support deliberation by design | The design has been shown to prevent cognitive surrender |
 | Better forecasts may help people choose interventions | Observational action-conditioned forecasts identify causal effects |
-| The schema and fictional replay are executable | A real dataset, trained model, or deployed integration exists here |
+| The schema, fictional replay, and synthetic Random Forest demo are executable | A real organisational dataset, validated organisational model, or deployed integration exists here |
